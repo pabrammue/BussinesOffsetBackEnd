@@ -2,7 +2,15 @@
 {
     public class Class1
     {
-        #region Funciones
+        #region Atributos
+
+        #endregion
+
+        #region Propiedades
+
+        #endregion
+
+        #region Constructores
 
         #endregion
     }
