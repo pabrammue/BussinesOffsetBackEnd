@@ -37,7 +37,7 @@
         /// <summary>
         /// Constructor vacio
         /// Pre: Nada
-        /// Post: Objeto proveedor con atributos
+        /// Post: Objeto proveedor sin atributos
         /// </summary>
         public Proveedores() { }
 
