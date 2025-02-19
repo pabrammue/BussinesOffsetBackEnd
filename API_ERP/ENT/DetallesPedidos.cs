@@ -58,7 +58,7 @@ namespace ENT
         /// <summary>
         /// Constructor vacío
         /// Pre: Nada
-        /// Post: Objeto detalles pedidos con atributos predeterminados
+        /// Post: Objeto detalles pedidos sin atributos
         /// </summary>
         public DetallesPedidos() { }
 
