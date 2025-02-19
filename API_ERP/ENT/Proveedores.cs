@@ -46,10 +46,10 @@
         /// Pre: El usuario añade los atributos del objeto
         /// Post: Se crea un objeto proveedor con sus atributos
         /// </summary>
-        /// <param name="idProveedores"></param>
-        /// <param name="nombre"></param>
-        /// <param name="direccion"></param>
-        /// <param name="email"></param>
+        /// <param name="idProveedores">Id del proveedor a agregar</param>
+        /// <param name="nombre">Cadena que contiene el nombre del proveedor</param>
+        /// <param name="direccion">Cadena que contiene la direccion del proveedor</param>
+        /// <param name="email">Cadena que contiene el email del proveedor</param>
         public Proveedores(int idProveedores, string nombre, string direccion, string email)
         {
             this.idProveedores = idProveedores;
