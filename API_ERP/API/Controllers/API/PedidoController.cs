@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ENT;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -50,7 +51,7 @@ namespace API.Controllers.API
 
         // POST api/pedido
         [HttpPost]
-        public IActionResult Post([FromBody] ENTPedido pedido)
+        public IActionResult Post([FromBody] Pedidos pedido)
         {
             if (pedido == null)
             {
@@ -58,7 +59,7 @@ namespace API.Controllers.API
             }
             try
             {
-                bool guardadoCorrectamente = ClsManejadoraPersonaBL.CreaPersonaBL(persona);
+                bool guardadoCorrectamente = true;//ClsManejadoraPersonaBL.CreaPersonaBL(persona);
                 if (guardadoCorrectamente)
                 {
                     return Created("Pedido creado correctamente", pedido);
@@ -73,7 +74,7 @@ namespace API.Controllers.API
 
         // PUT api/pedido/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] ENTPedido pedido)
+        public IActionResult Put(int id, [FromBody] Pedidos pedido)
         {
             if (pedido == null)
             {
@@ -81,14 +82,14 @@ namespace API.Controllers.API
             }
             try
             {
-                bool actualizado = ClsManejadoraPersonaBL.EditaPersonaBL(persona);
+                bool actualizado = true;//ClsManejadoraPersonaBL.EditaPersonaBL(persona);
                 if (actualizado)
                 {
                     return Accepted("Se ha modificado correctamente", pedido);
                 }
                 else
                 {
-                    return NotFound($"No se encontró el pedido con ID {pedido.Id} para actualizar.");
+                    return NotFound($"No se encontró el pedido con ID {pedido.IdPedidos} para actualizar.");
                 }
             }
             catch
@@ -103,7 +104,7 @@ namespace API.Controllers.API
         {
             try
             {
-                bool seBorra = ClsManejadoraPersonaBL.BorraPersonaBL(id);
+                bool seBorra = true;/*ClsManejadoraPersonaBL.BorraPersonaBL(id);*/
                 if (!seBorra)
                 {
                     return Accepted("Se ha borrado correctamente");

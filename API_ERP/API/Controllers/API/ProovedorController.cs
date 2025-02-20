@@ -14,7 +14,7 @@ namespace API.Controllers.API
         {
             try
             {
-                List<String> listadoCompleto = ClsListadoPersonaBL.ListaPersonasBL();
+                List<String> listadoCompleto = new List<string>(); // ClsListadoPersonaBL.ListaPersonasBL();
                 if (listadoCompleto.Count == 0)
                 {
                     return NotFound("No se encontraron proovedores.");
