@@ -13,6 +13,7 @@ namespace ENT
         private int idPedido;
         private int idProducto;
         private double precioTotal;
+        private double cuotaIva;
         private double precioBruto;
         private int cantidad;
         #endregion
@@ -46,7 +47,11 @@ namespace ENT
             get { return precioBruto; }
             set { precioBruto = value; }
         }
-
+        public double CuotaIva
+        {
+            get {return cuotaIva; }
+            set { cuotaIva = value; }
+        }
         public int Cantidad
         {
             get { return cantidad; }
@@ -73,11 +78,12 @@ namespace ENT
         /// <param name="precioTotal">Precio total del detalle del pedido</param>
         /// <param name="precioBruto">Precio bruto del detalle del pedido</param>
         /// <param name="cantidad">Cantidad de productos en el detalle del pedido</param>
-        public DetallesPedidos(int idDetalles, int idPedido, int idProducto, double precioTotal, double precioBruto, int cantidad)
+        public DetallesPedidos(int idDetalles, int idPedido, int idProducto, double precioTotal, double cuotaIva,double precioBruto, int cantidad)
         {
             this.idDetalles = idDetalles;
             this.idPedido = idPedido;
             this.idProducto = idProducto;
+            this.cuotaIva = cuotaIva;
             this.precioTotal = precioTotal;
             this.precioBruto = precioBruto;
             this.cantidad = cantidad;
