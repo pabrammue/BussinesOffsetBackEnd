@@ -11,10 +11,8 @@ namespace ENT
         #region Atributos
         private int idProducto;
         private string nombre;
-        private double precioUnitario;
-        private double baseImponible;
+        private int porcentajeIVA;
         private int stock;
-        private int idProveedor;
         private int idCategoria;
         #endregion
 
@@ -30,28 +28,16 @@ namespace ENT
             set { nombre = value; }
         }
 
-        public double PrecioUnitario
+        public int PorcentajeIVA
         {
-            get { return precioUnitario; }
-            set { precioUnitario = value; }
-        }
-
-        public double BaseImponible
-        {
-            get { return baseImponible; }
-            set { baseImponible = value; }
+            get { return porcentajeIVA; }
+            set {  porcentajeIVA = value; }
         }
 
         public int Stock
         {
             get { return stock; }
             set { stock = value; }
-        }
-
-        public int IdProveedor
-        {
-            get { return idProveedor; }
-            set { idProveedor = value; }
         }
 
         public int IdCategoria
@@ -76,19 +62,15 @@ namespace ENT
         /// </summary>
         /// <param name="id">Id del producto a agregar</param>
         /// <param name="nombre">Nombre del producto</param>
-        /// <param name="precioUnitario">Precio unitario del producto</param>
-        /// <param name="baseImponible">Base imponible del producto</param>
+        /// <param name="porcentajeIVA"> Numero entero que indica el porcentaje de IVA</param>
         /// <param name="stock">Cantidad disponible en inventario</param>
-        /// <param name="idProveedor">Id del proveedor asociado al producto</param>
         /// <param name="idCategoria">Id de la categoría a la que pertenece el producto</param>
-        public Productos(int id, string nombre, double precioUnitario, double baseImponible, int stock, int idProveedor, int idCategoria)
+        public Productos(int id, string nombre, int stock,int porcentajeIVA , int idCategoria)
         {
             this.idProducto = id;
             this.nombre = nombre;
-            this.precioUnitario = precioUnitario;
-            this.baseImponible = baseImponible;
             this.stock = stock;
-            this.idProveedor = idProveedor;
+            this.porcentajeIVA = porcentajeIVA;
             this.idCategoria = idCategoria;
         }
         #endregion
