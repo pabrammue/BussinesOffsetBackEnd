@@ -20,6 +20,7 @@ namespace ENT
         public int IdPedidos
         {
             get { return idPedidos; }
+            set { idPedidos = value; }
         }
 
         public DateTime Fecha
