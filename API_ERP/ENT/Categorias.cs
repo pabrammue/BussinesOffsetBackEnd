@@ -17,6 +17,7 @@ namespace ENT
         public int IdCategorias
         {
             get { return idCategorias; }
+            set { idCategorias = value; }
         }
 
         public string Nombre
