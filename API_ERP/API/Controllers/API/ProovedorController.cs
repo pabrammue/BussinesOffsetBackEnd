@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DAL;
+using ENT;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,12 +16,13 @@ namespace API.Controllers.API
         {
             try
             {
-                List<String> listadoCompleto = new List<string>(); // ClsListadoPersonaBL.ListaPersonasBL();
-                if (listadoCompleto.Count == 0)
+                List<Proveedores> listadoProveedores = ManejadoraProveedoresDAL.ObtenerProveedores();
+
+                if (listadoProveedores.Count == 0)
                 {
                     return NotFound("No se encontraron proovedores.");
                 }
-                return Ok(listadoCompleto);
+                return Ok(listadoProveedores);
             }
             catch
             {
@@ -28,18 +31,18 @@ namespace API.Controllers.API
         }
 
         // GET api/proovedor/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}/productos")]
         public IActionResult Get(int id)
         {
-            String proovedor = null;
+            List<Productos> listadoProductos = ManejadoraProductosDAL.ObtenerProductosPorProveedor(id);
             try
             {
                 //ClsPersona persona = ClsManejadoraPersonaBL.BuscaPersonaBL(id);
-                if (proovedor == null)
+                if (listadoProductos.Count==0)
                 {
-                    return NotFound($"No se encontró el proovedor con el id: {id}.");
+                    return NotFound($"No se ha asociado productos al proveedor: {id}.");
                 }
-                return Ok(proovedor);
+                return Ok(listadoProductos);
             }
             catch
             {

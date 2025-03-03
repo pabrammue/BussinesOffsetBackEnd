@@ -23,7 +23,7 @@ namespace DAL
 
                 {
 
-                    miConexion.ConnectionString = "server=campana.database.windows.net;database=HectorBD;uid=usuario;pwd=LaCampana123;trustServerCertificate = true;";
+                    miConexion.ConnectionString = "server=jlmejorada.database.windows.net;database=jlmejoradaBD;uid=usuario;pwd=LaCampana123;trustServerCertificate = true;";
 
                     miConexion.Open();
 
