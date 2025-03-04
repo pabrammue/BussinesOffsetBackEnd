@@ -51,7 +51,7 @@ namespace DAL
                 }
                 miLector.Close();
             }
-            catch (Exception ex)
+            catch (Exception ex) //System.InvalidCastException: 'Unable to cast object of type 'System.Decimal' to type 'System.Double'.'
             {
                 throw new Exception("Error al obtener los pedidos: " + ex.Message);
             }
