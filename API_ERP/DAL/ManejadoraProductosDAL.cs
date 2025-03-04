@@ -18,9 +18,9 @@ namespace DAL
         /// </summary>
         /// <param name="idProveedor">ID del proveedor cuyos productos se desean obtener</param>
         /// <returns>Lista de productos del proveedor especificado</returns>
-        public static List<Productos> ObtenerProductosPorProveedor(int idProveedor)
+        public static List<ProductosPorProveedorYCategorias> ObtenerProductosPorProveedor(int idProveedor)
         {
-            List<Productos> listadoProductos = new List<Productos>();
+            List<ProductosPorProveedorYCategorias> listaProductos = new List<ProductosPorProveedorYCategorias>();
             SqlConnection miConexion = new SqlConnection();
             SqlCommand miComando = new SqlCommand();
             SqlDataReader miLector;
@@ -28,7 +28,7 @@ namespace DAL
             try
             {
                 miConexion = clsConexion.getConexion();
-                miComando.CommandText = "ObtenerProductosPorProveedor"; // Nombre del procedimiento almacenado
+                miComando.CommandText = "ObtenerProductosPorProveedorYCategoria"; // Nombre del procedimiento almacenado
                 miComando.CommandType = CommandType.StoredProcedure;
                 miComando.Connection = miConexion;
                 miComando.Parameters.AddWithValue("@idProveedor", idProveedor); // Se agrega el parámetro
@@ -39,18 +39,17 @@ namespace DAL
                 {
                     while (miLector.Read())
                     {
-                        Productos producto = new Productos
-                        (
-                            (int)miLector["idProducto"],
+                        ProductosPorProveedorYCategorias producto = new ProductosPorProveedorYCategorias
+                            (
+                            (int)miLector["id"],
                             miLector["nombre"].ToString(),
-                            (double)miLector["precioUnitario"],
-                            (double)miLector["baseImponible"],
+                            (int)miLector["porcentajeIVA"],
                             (int)miLector["stock"],
-                            (int)miLector["idProveedor"],
-                            (int)miLector["idCategoria"]
-                        );
+                            (int)miLector["idCategoria"],
+                            (int)miLector["precioUnitario"]
+                            );
 
-                        listadoProductos.Add(producto);
+                        listaProductos.Add(producto);
                     }
                 }
                 miLector.Close();
@@ -64,7 +63,7 @@ namespace DAL
                 miConexion.Close();
             }
 
-            return listadoProductos;
+            return listaProductos;
         }
 
         #endregion
