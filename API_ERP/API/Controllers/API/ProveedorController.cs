@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.API
 {
-    [Route("api/proovedor")]
+    [Route("api/proveedor")]
     [ApiController]
-    public class ProovedorController : ControllerBase
+    public class ProveedorController : ControllerBase
     {
         // GET: api/proovedor
         [HttpGet]
