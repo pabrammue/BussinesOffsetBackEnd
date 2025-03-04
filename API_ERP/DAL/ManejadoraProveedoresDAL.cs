@@ -62,6 +62,49 @@ namespace DAL
             return listadoProveedores;
         }
 
+        /// <summary>
+        /// Funcion que devuelve un proveedor por su id
+        /// Pre: El usuario elige el id del proveedor
+        /// Post: Se devuelve un objeto proveedor por su id si existe y si no error
+        /// </summary>
+        /// <param name="id">Numero entero que indica el id del proveedor</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static Proveedores ObtenerProveedoresPorId(int id)
+        {
+            Proveedores proveedor = new Proveedores();
+            SqlConnection miConexion = new SqlConnection();
+            SqlCommand miComando = new SqlCommand();
+            SqlDataReader miLector;
+            try
+            {
+                miConexion = clsConexion.getConexion();
+                miComando.CommandText = "SELECT * FROM Proveedores where id = @id"; 
+                miComando.Connection = miConexion;
+
+                miLector = miComando.ExecuteReader();
+
+                if (miLector.HasRows)
+                {
+                    while (miLector.Read())
+                    {
+                        proveedor = new Proveedores
+                        (
+                            (int)miLector["id"],
+                            miLector["nombre"].ToString(),
+                            miLector["direccion"].ToString(),
+                            miLector["email"].ToString()
+                        );
+                    }
+                }
+            } catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los proveedor: " + ex.Message);
+            }
+            return proveedor;
+        }
+
+
         #endregion
     }
 
