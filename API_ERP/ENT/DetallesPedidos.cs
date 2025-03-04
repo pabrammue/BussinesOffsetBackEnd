@@ -80,7 +80,7 @@ namespace ENT
         /// <param name="cantidad">Cantidad de productos en el detalle del pedido</param>
         public DetallesPedidos(int idDetalles, int idPedido, int idProducto, double precioTotal, double cuotaIva,double precioBruto, int cantidad)
         {
-            this.idDetalles = idDetalles;
+            
             this.idPedido = idPedido;
             this.idProducto = idProducto;
             this.cuotaIva = cuotaIva;
@@ -88,6 +88,29 @@ namespace ENT
             this.precioBruto = precioBruto;
             this.cantidad = cantidad;
         }
+
+        /// <summary>
+        /// Constructor con parámetros
+        /// Pre: El usuario añade los atributos del objeto
+        /// Post: Se crea un objeto detalles pedidos con sus atributos
+        /// </summary>
+        /// <param name="idPedido">Id del pedido asociado</param>
+        /// <param name="idProducto">Id del producto asociado</param>
+        /// <param name="precioTotal">Precio total del detalle del pedido</param>
+        /// <param name="precioBruto">Precio bruto del detalle del pedido</param>
+        /// <param name="cantidad">Cantidad de productos en el detalle del pedido</param>
+        public DetallesPedidos(int idPedido, int idProducto, double precioTotal, double cuotaIva,double precioBruto, int cantidad)
+        {
+            
+            this.idPedido = idPedido;
+            this.idProducto = idProducto;
+            this.cuotaIva = cuotaIva;
+            this.precioTotal = precioTotal;
+            this.precioBruto = precioBruto;
+            this.cantidad = cantidad;
+        }
+        
+
         #endregion
     }
 }

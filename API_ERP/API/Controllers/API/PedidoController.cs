@@ -1,4 +1,5 @@
-﻿using ENT;
+﻿using DAL;
+using ENT;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,10 +14,11 @@ namespace API.Controllers.API
         [HttpGet]
         public IActionResult Get()
         {
-            List<String> listadoCompleto = new List<String>();
+            List<Pedidos> listadoCompleto = new List<Pedidos>();
             try
             {
                 //List<String> listadoCompleto = "ClsListadoPersonaBL.ListaPersonasBL()"
+                listadoCompleto = ManejadoraPedidosDAL.ObtenerPedidos();
                 if (listadoCompleto.Count == 0)
                 {
                     return NotFound("No se encontraron pedidos.");
