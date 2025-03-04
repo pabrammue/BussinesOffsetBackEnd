@@ -14,6 +14,7 @@ namespace ENT
         private decimal precioTotal;
         private decimal precioBruto;
         private int idProveedor;
+        private bool aceptado;
         private string nombreProveedor;
         #endregion
         #region Propiedades
@@ -46,6 +47,11 @@ namespace ENT
             get { return idProveedor; }
             set { idProveedor = value; }
         }
+        public bool Aceptado
+        {
+            get { return aceptado; }
+            set { aceptado = value; }
+        }
         public string NombreProveedor
         {
             get { return nombreProveedor; }
@@ -56,13 +62,14 @@ namespace ENT
         #region Constructores
 
         public PedidosConNombreProveedor() { }
-        public PedidosConNombreProveedor(int id, DateTime fecha, decimal precioTotal, decimal precioBruto, int idProveedor, string nombreProveedor)
+        public PedidosConNombreProveedor(int id, DateTime fecha, decimal precioTotal, decimal precioBruto, int idProveedor, bool aceptado, string nombreProveedor)
         {
             this.id = id;
             this.fecha = fecha;
             this.precioTotal = precioTotal;
             this.precioBruto = precioBruto;
             this.idProveedor = idProveedor;
+            this.aceptado = aceptado;
             this.nombreProveedor = nombreProveedor;
         }
 

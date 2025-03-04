@@ -72,13 +72,14 @@ namespace ENT
         /// <param name="precioTotal">Valor total del pedido</param>
         /// <param name="precioBruto">Valor bruto del pedido antes de impuestos o descuentos</param>
         /// <param name="idProveedor">Id del proveedor asociado al pedido</param>
-        public Pedidos(int id, DateTime fecha, decimal precioTotal, decimal precioBruto, int idProveedor)
+        public Pedidos(int id, DateTime fecha, decimal precioTotal, decimal precioBruto, int idProveedor,bool aceptado)
         {
             this.idPedidos = id;
             this.fecha = fecha;
             this.precioTotal = precioTotal;
             this.precioBruto = precioBruto;
             this.idProveedor = idProveedor;
+            Aceptado = aceptado;
         }
         #endregion
     }

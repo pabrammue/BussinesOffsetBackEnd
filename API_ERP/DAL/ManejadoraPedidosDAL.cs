@@ -24,6 +24,7 @@ namespace DAL
             SqlCommand miComando = new SqlCommand();
             SqlDataReader miLector;
             PedidosConNombreProveedor oPedido;
+            int aceptado = 0;
 
             try
             {
@@ -37,6 +38,7 @@ namespace DAL
                 {
                     while (miLector.Read())
                     {
+                        aceptado = (int)miLector["aceptado"];
                         oPedido = new PedidosConNombreProveedor
                         (
                             (int)miLector["id"],
@@ -44,7 +46,8 @@ namespace DAL
                             (decimal)miLector["precioTotal"],
                             (decimal)miLector["precioBruto"],
                             (int)miLector["idProveedor"],
-                            miLector["nombreProveedor"].ToString()
+                            aceptado == 1 ? true : false,
+                            miLector["nombre"].ToString()
                         );
 
                         listadoPedidos.Add(oPedido);
