@@ -34,7 +34,7 @@ namespace API.Controllers.API
         [HttpGet("{id}/productos")]
         public IActionResult Get(int id)
         {
-            List<Productos> listadoProductos = ManejadoraProductosDAL.ObtenerProductosPorProveedor(id);
+            List<ProductosPorProveedorYCategorias> listadoProductos = ManejadoraProductosDAL.ObtenerProductosPorProveedor(id);
             try
             {
                 //ClsPersona persona = ClsManejadoraPersonaBL.BuscaPersonaBL(id);

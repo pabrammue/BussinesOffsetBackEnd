@@ -56,7 +56,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener los productos por proveedor: " + ex.Message);
+                throw new Exception("Error al obtener los productos por proveedor: " + ex.Message);//System.Exception: 'Error al obtener los productos por proveedor: Could not find stored procedure 'ObtenerProductosPorProveedorYCategoria'.'
             }
             finally
             {
