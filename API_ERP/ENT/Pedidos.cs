@@ -11,8 +11,8 @@ namespace ENT
         #region Atributos
         private int idPedidos;
         private DateTime fecha;
-        private double precioTotal;
-        private double precioBruto;
+        private decimal precioTotal;
+        private decimal precioBruto;
         private int idProveedor;
         #endregion
 
@@ -28,13 +28,13 @@ namespace ENT
             set { fecha = value; }
         }
 
-        public double PrecioTotal
+        public decimal PrecioTotal
         {
             get { return precioTotal; }
             set { precioTotal = value; }
         }
 
-        public double PrecioBruto
+        public decimal PrecioBruto
         {
             get { return precioBruto; }
             set { precioBruto = value; }
@@ -65,7 +65,7 @@ namespace ENT
         /// <param name="precioTotal">Valor total del pedido</param>
         /// <param name="precioBruto">Valor bruto del pedido antes de impuestos o descuentos</param>
         /// <param name="idProveedor">Id del proveedor asociado al pedido</param>
-        public Pedidos(int id, DateTime fecha, double precioTotal, double precioBruto, int idProveedor)
+        public Pedidos(int id, DateTime fecha, decimal precioTotal, decimal precioBruto, int idProveedor)
         {
             this.idPedidos = id;
             this.fecha = fecha;

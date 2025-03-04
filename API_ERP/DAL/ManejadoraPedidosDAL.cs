@@ -41,8 +41,8 @@ namespace DAL
                         (
                             (int)miLector["id"],
                             (DateTime)miLector["fecha"],
-                            (double)miLector["precioTotal"],
-                            (double)miLector["precioBruto"],
+                            (decimal)miLector["precioTotal"],
+                            (decimal)miLector["precioBruto"],
                             (int)miLector["idProveedor"]
                         );
 
