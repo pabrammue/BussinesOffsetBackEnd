@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace ENT
 {
-    public class Productos
+    public class ProductosPorProveedorYCategorias
     {
         #region Atributos
         private int idProducto;
@@ -14,12 +15,13 @@ namespace ENT
         private int porcentajeIVA;
         private int stock;
         private int idCategoria;
+        private double precioUnitario;
         #endregion
-
         #region Propiedades
         public int IdProducto
         {
             get { return idProducto; }
+            set { idProducto = value; }
         }
 
         public string Nombre
@@ -31,7 +33,7 @@ namespace ENT
         public int PorcentajeIVA
         {
             get { return porcentajeIVA; }
-            set {  porcentajeIVA = value; }
+            set { porcentajeIVA = value; }
         }
 
         public int Stock
@@ -45,34 +47,27 @@ namespace ENT
             get { return idCategoria; }
             set { idCategoria = value; }
         }
-        #endregion
 
-        #region Constructores
-        /// <summary>
-        /// Constructor vacío
-        /// Pre: Nada
-        /// Post: Objeto producto sin atributos
-        /// </summary>
-        public Productos() { }
-
-        /// <summary>
-        /// Constructor con parámetros
-        /// Pre: El usuario añade los atributos del objeto
-        /// Post: Se crea un objeto producto con sus atributos
-        /// </summary>
-        /// <param name="id">Id del producto a agregar</param>
-        /// <param name="nombre">Nombre del producto</param>
-        /// <param name="porcentajeIVA"> Numero entero que indica el porcentaje de IVA</param>
-        /// <param name="stock">Cantidad disponible en inventario</param>
-        /// <param name="idCategoria">Id de la categoría a la que pertenece el producto</param>
-        public Productos(int id, string nombre, int stock,int porcentajeIVA , int idCategoria)
+        public double PrecioUnitario
         {
-            this.idProducto = id;
-            this.nombre = nombre;
-            this.stock = stock;
-            this.porcentajeIVA = porcentajeIVA;
-            this.idCategoria = idCategoria;
+            get { return precioUnitario; }
+            set { precioUnitario = value; }
         }
         #endregion
+        #region Constructores
+        public ProductosPorProveedorYCategorias() { }
+
+        public ProductosPorProveedorYCategorias(int idProducto, string nombre, int porcentajeIVA, int stock, int idCategoria, double precioUnitario)
+        {
+            this.idProducto = idProducto;
+            this.nombre = nombre;
+            this.porcentajeIVA = porcentajeIVA;
+            this.stock = stock;
+            this.idCategoria = idCategoria;
+            this.precioUnitario = precioUnitario;
+        }
+
+        #endregion
+
     }
 }

@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace ENT
 {
-    public class Pedidos
+    public class PedidosConNombreProveedor
     {
         #region Atributos
-        private int idPedidos;
+        private int id;
         private DateTime fecha;
         private decimal precioTotal;
         private decimal precioBruto;
         private int idProveedor;
+        private string nombreProveedor;
         #endregion
-
         #region Propiedades
-        public int IdPedidos
+        public int Id
         {
-            get { return idPedidos; }
-            set { idPedidos = value; }
+            get { return id; }
+            set { id = value; }
         }
 
         public DateTime Fecha
@@ -46,34 +46,26 @@ namespace ENT
             get { return idProveedor; }
             set { idProveedor = value; }
         }
+        public string NombreProveedor
+        {
+            get { return nombreProveedor; }
+            set { nombreProveedor = value; }
+        }
         #endregion
 
         #region Constructores
-        /// <summary>
-        /// Constructor vacío
-        /// Pre: Nada
-        /// Post: Objeto pedidos sin atributos
-        /// </summary>
-        public Pedidos() { }
 
-        /// <summary>
-        /// Constructor con parámetros
-        /// Pre: El usuario añade los atributos del objeto
-        /// Post: Se crea un objeto pedido con sus atributos
-        /// </summary>
-        /// <param name="id">Id del pedido a agregar</param>
-        /// <param name="fecha">Fecha en la que se realizó el pedido</param>
-        /// <param name="precioTotal">Valor total del pedido</param>
-        /// <param name="precioBruto">Valor bruto del pedido antes de impuestos o descuentos</param>
-        /// <param name="idProveedor">Id del proveedor asociado al pedido</param>
-        public Pedidos(int id, DateTime fecha, decimal precioTotal, decimal precioBruto, int idProveedor)
+        public PedidosConNombreProveedor() { }
+        public PedidosConNombreProveedor(int id, DateTime fecha, decimal precioTotal, decimal precioBruto, int idProveedor, string nombreProveedor)
         {
-            this.idPedidos = id;
+            this.id = id;
             this.fecha = fecha;
             this.precioTotal = precioTotal;
             this.precioBruto = precioBruto;
             this.idProveedor = idProveedor;
+            this.nombreProveedor = nombreProveedor;
         }
+
         #endregion
     }
 }
