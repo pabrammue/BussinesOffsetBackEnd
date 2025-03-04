@@ -38,7 +38,6 @@ namespace DAL
                 {
                     while (miLector.Read())
                     {
-                        aceptado = (int)miLector["aceptado"];
                         oPedido = new PedidosConNombreProveedor
                         (
                             (int)miLector["id"],
@@ -46,7 +45,7 @@ namespace DAL
                             (decimal)miLector["precioTotal"],
                             (decimal)miLector["precioBruto"],
                             (int)miLector["idProveedor"],
-                            aceptado == 1 ? true : false,
+                            (bool)miLector["aceptado"],
                             miLector["nombre"].ToString()
                         );
 
