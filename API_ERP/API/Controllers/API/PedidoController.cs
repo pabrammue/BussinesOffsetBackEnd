@@ -14,11 +14,11 @@ namespace API.Controllers.API
         [HttpGet]
         public IActionResult Get()
         {
-            List<Pedidos> listadoCompleto = new List<Pedidos>();
+            List<PedidosConNombreProveedor> listadoCompleto = new List<PedidosConNombreProveedor>();
             try
             {
-                //List<String> listadoCompleto = "ClsListadoPersonaBL.ListaPersonasBL()"
-                listadoCompleto = ManejadoraPedidosDAL.ObtenerPedidos();
+                
+                listadoCompleto = ManejadoraPedidosDAL.ObtenerPedidosConNombreProveedor();
                 if (listadoCompleto.Count == 0)
                 {
                     return NotFound("No se encontraron pedidos.");
