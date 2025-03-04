@@ -14,6 +14,7 @@ namespace ENT
         private decimal precioTotal;
         private decimal precioBruto;
         private int idProveedor;
+        private bool aceptado;
         #endregion
 
         #region Propiedades
@@ -46,14 +47,19 @@ namespace ENT
             get { return idProveedor; }
             set { idProveedor = value; }
         }
+        public bool Aceptado
+        {
+            get { return aceptado; }
+            set { aceptado = value; }
+        }
         #endregion
 
-        #region Constructores
-        /// <summary>
-        /// Constructor vacío
-        /// Pre: Nada
-        /// Post: Objeto pedidos sin atributos
-        /// </summary>
+            #region Constructores
+            /// <summary>
+            /// Constructor vacío
+            /// Pre: Nada
+            /// Post: Objeto pedidos sin atributos
+            /// </summary>
         public Pedidos() { }
 
         /// <summary>
