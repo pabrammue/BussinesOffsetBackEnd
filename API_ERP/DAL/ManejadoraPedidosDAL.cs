@@ -14,21 +14,21 @@ namespace DAL
         #region Funciones
 
         /// <summary>
-        /// Función para devolver un listado de todas las categorías de la base de datos
+        /// Función para devolver un listado de todos los pedidos con el nombre del proveedor
         /// </summary>
         /// <returns>Devolverá una lista completa de todos los Pedidos</returns>
-        public static List<Pedidos> ObtenerPedidos()
+        public static List<PedidosConNombreProveedor> ObtenerPedidosConNombreProveedor()
         {
             SqlConnection miConexion = new SqlConnection();
-            List<Pedidos> listadoPedidos = new List<Pedidos>();
+            List<PedidosConNombreProveedor> listadoPedidos = new List<PedidosConNombreProveedor>();
             SqlCommand miComando = new SqlCommand();
             SqlDataReader miLector;
-            Pedidos oPedido;
+            PedidosConNombreProveedor oPedido;
 
             try
             {
                 miConexion = clsConexion.getConexion();
-                miComando.CommandText = "ObtenerPedidos"; // Nombre del procedimiento almacenado
+                miComando.CommandText = "ObtenerPedidosConNombreProveedor"; // Nombre del procedimiento almacenado
                 miComando.CommandType = CommandType.StoredProcedure;
                 miComando.Connection = miConexion;
                 miLector = miComando.ExecuteReader();
@@ -37,13 +37,14 @@ namespace DAL
                 {
                     while (miLector.Read())
                     {
-                        oPedido = new Pedidos
+                        oPedido = new PedidosConNombreProveedor
                         (
                             (int)miLector["id"],
                             (DateTime)miLector["fecha"],
                             (decimal)miLector["precioTotal"],
                             (decimal)miLector["precioBruto"],
-                            (int)miLector["idProveedor"]
+                            (int)miLector["idProveedor"],
+                            miLector["nombreProveedor"].ToString()
                         );
 
                         listadoPedidos.Add(oPedido);

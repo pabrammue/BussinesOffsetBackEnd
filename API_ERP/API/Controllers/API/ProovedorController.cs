@@ -30,7 +30,7 @@ namespace API.Controllers.API
             }
         }
 
-        // GET api/proovedor/5
+        // GET api/proovedor/5/categorias
         [HttpGet("{id}/productos")]
         public IActionResult Get(int id)
         {
