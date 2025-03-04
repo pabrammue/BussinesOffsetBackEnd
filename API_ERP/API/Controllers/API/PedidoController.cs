@@ -35,15 +35,15 @@ namespace API.Controllers.API
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            String persona = null;
+            PedidosConDetallesProductos pedidoFinal = null;
+            Pedidos pedido = null;
+            List<DetallesPedidos> detallesPedidos = null;
             try
             {
-                //ClsPersona persona = ClsManejadoraPersonaBL.BuscaPersonaBL(id);
-                if (persona == null)
-                {
-                    return NotFound($"No se encontró el pedido con el id: {id}.");
-                }
-                return Ok(persona);
+                //pedido = 
+                //detallesPedidos = ManejadoraPedidosDAL.ObtenerDetallesPedidoPorPedido(id);
+                //pedidoFinal = new PedidosConDetallesProductos(pedido, detallesPedidos);
+                return Ok(pedidoFinal);
             }
             catch
             {
