@@ -54,7 +54,7 @@ namespace ENT
         }
         #endregion
 
-            #region Constructores
+        #region Constructores
             /// <summary>
             /// Constructor vacío
             /// Pre: Nada
