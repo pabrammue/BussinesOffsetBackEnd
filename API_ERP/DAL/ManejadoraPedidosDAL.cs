@@ -128,6 +128,94 @@ namespace DAL
         }
 
 
+        /// <summary>
+        /// Función que inserta un pedido en la base de datos usando el procedimiento almacenado 'InsertarPedido'.
+        /// <br></br>
+        /// Pre: Objeto pedido con los detalles necesarios.
+        /// <br></br>
+        /// Post: Retorna el número de filas afectadas tras el insert.
+        /// </summary>
+        /// <param name="pedido">Objeto pedido con los detalles a insertar en la base de datos.</param>
+        /// <returns>Número de filas afectadas tras el insert.</returns>
+        public static int insertarPedidoDAL(Pedidos pedido)
+        {
+            int numeroFilasAfectadas = 0;
+
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand miComando = new SqlCommand();
+
+            try
+            {
+                conexion = clsConexion.getConexion();
+                miComando.Connection = conexion;
+                miComando.CommandType = System.Data.CommandType.StoredProcedure;
+                miComando.CommandText = "InsertarPedido";
+
+                // Parámetros del procedimiento almacenado
+                miComando.Parameters.Add("@fecha", System.Data.SqlDbType.DateTime).Value = pedido.Fecha;
+                miComando.Parameters.Add("@precioBruto", System.Data.SqlDbType.Decimal).Value = pedido.PrecioBruto;
+                miComando.Parameters.Add("@precioTotal", System.Data.SqlDbType.Decimal).Value = pedido.PrecioTotal;
+                miComando.Parameters.Add("@idProveedor", System.Data.SqlDbType.Int).Value = pedido.IdProveedor;
+                miComando.Parameters.Add("@aceptado", System.Data.SqlDbType.Bit).Value = pedido.Aceptado;
+
+                numeroFilasAfectadas = miComando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+
+            return numeroFilasAfectadas;
+        }
+
+        /// <summary>
+        /// Función que desactiva un pedido en la base de datos usando el procedimiento almacenado 'DesactivarPedido'.
+        /// <br></br>
+        /// Pre: Int para obtener el id del pedido.
+        /// <br></br>
+        /// Post: Retorna el número de filas afectadas tras la procedure.
+        /// </summary>
+        /// <param name="idPedido">Int para obtener el id del pedido</param>
+        /// <returns>Número de filas afectadas tras la procedure</returns>
+        public static int desactivarPedido(int idPedido)
+        {
+            int numeroFilasAfectadas = 0;
+
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand miComando = new SqlCommand();
+
+            try
+            {
+                conexion = clsConexion.getConexion();
+                miComando.Connection = conexion;
+                miComando.CommandType = System.Data.CommandType.StoredProcedure;
+                miComando.CommandText = "DesactivarPedido";
+
+                // Parámetro del procedimiento almacenado
+                miComando.Parameters.Add("@idPedido", System.Data.SqlDbType.Int).Value = idPedido;
+
+                numeroFilasAfectadas = miComando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+
+            return numeroFilasAfectadas;
+        }
+
+
+
+
+
         #endregion
     }
 }
