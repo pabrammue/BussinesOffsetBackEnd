@@ -35,14 +35,18 @@ namespace API.Controllers.API
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            PedidosConDetallesProductos pedidoFinal = null;
-            Pedidos pedido = null;
-            List<DetallesPedidos> detallesPedidos = null;
+            PedidosConDetallesProductos pedidoFinal = new PedidosConDetallesProductos();
+            PedidosConNombreProveedor pedido = new PedidosConNombreProveedor();
+            List<DetallesPedidos> detallesPedidos = new List<DetallesPedidos>();
+            List<PedidosConNombreProveedor> listaPedidos = new List<PedidosConNombreProveedor>();
             try
             {
-                //pedido = 
-                //detallesPedidos = ManejadoraPedidosDAL.ObtenerDetallesPedidoPorPedido(id);
-                //pedidoFinal = new PedidosConDetallesProductos(pedido, detallesPedidos);
+                listaPedidos = ManejadoraPedidosDAL.ObtenerPedidosConNombreProveedor();
+
+                pedido = listaPedidos.Find(x => x.Id == id);
+
+                detallesPedidos = ManejadoraPedidosDAL.ObtenerDetallesPedidoPorPedido(id);
+                pedidoFinal = new PedidosConDetallesProductos(pedido, detallesPedidos);
                 return Ok(pedidoFinal);
             }
             catch

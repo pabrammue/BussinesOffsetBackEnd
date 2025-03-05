@@ -9,13 +9,13 @@ namespace ENT
     public class PedidosConDetallesProductos
     {
         #region Atributos
-        PedidosConNombreProveedor pedido;
-        List<DetallesPedidos> listaProductos;
+        private PedidosConNombreProveedor pedido;
+        private List<DetallesPedidos> listaProductos;
         #endregion
 
         #region Propiedades
-        PedidosConNombreProveedor Pedido { get {  return pedido; } set { pedido = value; } }
-        List<DetallesPedidos> ListaProductos { get { return listaProductos; } set {  listaProductos = value; } }
+        public PedidosConNombreProveedor Pedido { get {  return pedido; } set { pedido = value; } }
+        public List<DetallesPedidos> ListaProductos { get { return listaProductos; } set {  listaProductos = value; } }
         #endregion
 
         #region Constructores

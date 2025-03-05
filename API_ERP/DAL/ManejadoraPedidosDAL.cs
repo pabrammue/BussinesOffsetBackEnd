@@ -102,9 +102,9 @@ namespace DAL
                         (
                             idPedido,
                             (int)miLector["idProducto"],
-                            (double)miLector["precioTotal"],
-                            (double)miLector["cuotaDelIVA"],
-                            (double)miLector["precioBruto"],
+                            (decimal)miLector["precioTotal"],
+                            (decimal)miLector["cuotaDeIVA"],
+                            (decimal)miLector["precioBruto"],
                             (int)miLector["cantidad"]
                             
 
@@ -126,6 +126,7 @@ namespace DAL
 
             return listaDetalles;
         }
+
 
 
         #endregion

@@ -12,9 +12,9 @@ namespace ENT
         private int idDetalles;
         private int idPedido;
         private int idProducto;
-        private double precioTotal;
-        private double cuotaIva;
-        private double precioBruto;
+        private decimal precioTotal;
+        private decimal cuotaIva;
+        private decimal precioBruto;
         private int cantidad;
         #endregion
 
@@ -36,18 +36,18 @@ namespace ENT
             set { idProducto = value; }
         }
 
-        public double PrecioTotal
+        public decimal PrecioTotal
         {
             get { return precioTotal; }
             set { precioTotal = value; }
         }
 
-        public double PrecioBruto
+        public decimal PrecioBruto
         {
             get { return precioBruto; }
             set { precioBruto = value; }
         }
-        public double CuotaIva
+        public decimal CuotaIva
         {
             get {return cuotaIva; }
             set { cuotaIva = value; }
@@ -78,7 +78,7 @@ namespace ENT
         /// <param name="precioTotal">Precio total del detalle del pedido</param>
         /// <param name="precioBruto">Precio bruto del detalle del pedido</param>
         /// <param name="cantidad">Cantidad de productos en el detalle del pedido</param>
-        public DetallesPedidos(int idDetalles, int idPedido, int idProducto, double precioTotal, double cuotaIva,double precioBruto, int cantidad)
+        public DetallesPedidos(int idDetalles, int idPedido, int idProducto, decimal precioTotal, decimal cuotaIva, decimal precioBruto, int cantidad)
         {
             
             this.idPedido = idPedido;
@@ -99,7 +99,7 @@ namespace ENT
         /// <param name="precioTotal">Precio total del detalle del pedido</param>
         /// <param name="precioBruto">Precio bruto del detalle del pedido</param>
         /// <param name="cantidad">Cantidad de productos en el detalle del pedido</param>
-        public DetallesPedidos(int idPedido, int idProducto, double precioTotal, double cuotaIva,double precioBruto, int cantidad)
+        public DetallesPedidos(int idPedido, int idProducto, decimal precioTotal, decimal cuotaIva, decimal precioBruto, int cantidad)
         {
             
             this.idPedido = idPedido;
