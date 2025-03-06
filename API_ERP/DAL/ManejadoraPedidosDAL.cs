@@ -75,9 +75,9 @@ namespace DAL
         /// <param name="idPedido"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public static List<DetallesPedidos> ObtenerDetallesPedidoPorPedido(int idPedido)
+        public static List<DetallesPedidosConNombreProducto> ObtenerDetallesPedidoPorPedido(int idPedido)
         {
-            List<DetallesPedidos> listaDetalles = new List<DetallesPedidos>();
+            List<DetallesPedidosConNombreProducto> listaDetalles = new List<DetallesPedidosConNombreProducto>();
             SqlConnection miConexion = new SqlConnection();
             SqlCommand miComando = new SqlCommand();
             SqlDataReader miLector;
@@ -98,7 +98,7 @@ namespace DAL
                 {
                     while (miLector.Read())
                     {
-                        DetallesPedidos detalle = new DetallesPedidos
+                        DetallesPedidos DetallesPedidosConNombreProducto = new DetallesPedidosConNombreProducto
                         (
                             idPedido,
                             (int)miLector["idProducto"],
