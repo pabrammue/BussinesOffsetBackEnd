@@ -62,6 +62,10 @@ namespace ENT
         #region Constructores
 
         public PedidosConNombreProveedor() { }
+
+        public PedidosConNombreProveedor(int idProveedor) {
+            this.idProveedor=idProveedor;
+        }
         public PedidosConNombreProveedor(int id, DateTime fecha, decimal precioTotal, decimal precioBruto, int idProveedor, bool aceptado, string nombreProveedor)
         {
             this.id = id;

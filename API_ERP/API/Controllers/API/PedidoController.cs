@@ -87,7 +87,30 @@ namespace API.Controllers.API
             }
             try
             {
-                bool guardadoCorrectamente = true;//ClsManejadoraPersonaBL.CreaPersonaBL(persona);
+                bool guardadoCorrectamente = true;
+
+                PedidosConNombreProveedor ped = pedido.Pedido;
+                List<DetallesPedidosConNombreProducto> listaP = pedido.ListaProductos;
+                int idPedido = ManejadoraPedidosDAL.creaccionPedidoDAL(ped);
+
+                List<DetallesPedidos> nuevaLista = new List<DetallesPedidos>();
+
+                
+                foreach (var item in listaP)
+                {
+                    nuevaLista.Add(new DetallesPedidos
+                    {
+                        IdPedido = item.IdPedido,
+                        IdProducto = item.IdProducto,
+                        PrecioTotal = item.PrecioTotal,
+                        CuotaIva = item.CuotaIva,
+                        PrecioBruto = item.PrecioBruto,
+                        Cantidad = item.Cantidad
+                    });
+                }
+
+
+
                 if (guardadoCorrectamente)
                 {
                     return Created("Pedido creado correctamente", pedido);

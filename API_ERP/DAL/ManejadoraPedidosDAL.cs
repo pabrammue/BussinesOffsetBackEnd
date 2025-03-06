@@ -139,28 +139,28 @@ namespace DAL
         /// </summary>
         /// <param name="pedido">Objeto pedido con los detalles a insertar en la base de datos.</param>
         /// <returns>Número de filas afectadas tras el insert.</returns>
-        public static int creaccionPedidoDAL(Pedidos pedido)
+        public static int creaccionPedidoDAL(PedidosConNombreProveedor pedido)
         {
-            int idPedidoGenerado = 0;  // Variable para guardar el ID del pedido creado
+            int idPedidoGenerado = 0;  
 
             using (SqlConnection conexion = clsConexion.getConexion())
             {
                 using (SqlCommand miComando = new SqlCommand())
                 {
                     miComando.Connection = conexion;
-                    miComando.CommandType = CommandType.Text;  // Usar CommandType.Text para consultas directas
+                    miComando.CommandType = CommandType.Text;  
 
                     try
                     {
-                        // Insertar solo el idProveedor y obtener el ID generado
+                        
                         miComando.CommandText = @"
                     INSERT INTO Pedidos (idProveedor) VALUES (@idProveedor);
-                    SELECT SCOPE_IDENTITY();";  // Obtener el ID generado
+                    SELECT SCOPE_IDENTITY();";  
 
-                        // Parámetro para el idProveedor
+                        
                         miComando.Parameters.Add("@idProveedor", SqlDbType.Int).Value = pedido.IdProveedor;
 
-                        // Ejecutar y obtener el ID del pedido creado
+                        
                         idPedidoGenerado = Convert.ToInt32(miComando.ExecuteScalar());
                     }
                     catch (Exception ex)
@@ -170,7 +170,7 @@ namespace DAL
                 }
             }
 
-            return idPedidoGenerado;  // Devuelve el ID del pedido creado
+            return idPedidoGenerado;  
         }
 
 
