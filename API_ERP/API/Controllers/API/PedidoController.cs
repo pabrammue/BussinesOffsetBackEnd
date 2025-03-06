@@ -57,9 +57,9 @@ namespace API.Controllers.API
 
         // POST api/pedido
         [HttpPost]
-        public IActionResult Post([FromBody] Pedidos pedido)
+        public IActionResult Post([FromBody] Pedidos pedido,List<DetallesPedidos> listaProductos)
         {
-            if (pedido == null)
+            if (pedido == null || listaProductos==null)
             {
                 return BadRequest("Datos de pedido no válidos.");
             }

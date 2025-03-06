@@ -139,40 +139,40 @@ namespace DAL
         /// </summary>
         /// <param name="pedido">Objeto pedido con los detalles a insertar en la base de datos.</param>
         /// <returns>Número de filas afectadas tras el insert.</returns>
-        public static int insertarPedidoDAL(Pedidos pedido)
+        public static int creaccionPedidoDAL(Pedidos pedido)
         {
-            int numeroFilasAfectadas = 0;
+            int idPedidoGenerado = 0;  // Variable para guardar el ID del pedido creado
 
-            SqlConnection conexion = new SqlConnection();
-            SqlCommand miComando = new SqlCommand();
-
-            try
+            using (SqlConnection conexion = clsConexion.getConexion())
             {
-                conexion = clsConexion.getConexion();
-                miComando.Connection = conexion;
-                miComando.CommandType = System.Data.CommandType.StoredProcedure;
-                miComando.CommandText = "InsertarPedido";
+                using (SqlCommand miComando = new SqlCommand())
+                {
+                    miComando.Connection = conexion;
+                    miComando.CommandType = CommandType.Text;  // Usar CommandType.Text para consultas directas
 
-                // Parámetros del procedimiento almacenado
-                miComando.Parameters.Add("@fecha", System.Data.SqlDbType.DateTime).Value = pedido.Fecha;
-                miComando.Parameters.Add("@precioBruto", System.Data.SqlDbType.Decimal).Value = pedido.PrecioBruto;
-                miComando.Parameters.Add("@precioTotal", System.Data.SqlDbType.Decimal).Value = pedido.PrecioTotal;
-                miComando.Parameters.Add("@idProveedor", System.Data.SqlDbType.Int).Value = pedido.IdProveedor;
-                miComando.Parameters.Add("@aceptado", System.Data.SqlDbType.Bit).Value = pedido.Aceptado;
+                    try
+                    {
+                        // Insertar solo el idProveedor y obtener el ID generado
+                        miComando.CommandText = @"
+                    INSERT INTO Pedidos (idProveedor) VALUES (@idProveedor);
+                    SELECT SCOPE_IDENTITY();";  // Obtener el ID generado
 
-                numeroFilasAfectadas = miComando.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-            finally
-            {
-                conexion.Close();
+                        // Parámetro para el idProveedor
+                        miComando.Parameters.Add("@idProveedor", SqlDbType.Int).Value = pedido.IdProveedor;
+
+                        // Ejecutar y obtener el ID del pedido creado
+                        idPedidoGenerado = Convert.ToInt32(miComando.ExecuteScalar());
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Error al crear el pedido: " + ex.Message);
+                    }
+                }
             }
 
-            return numeroFilasAfectadas;
+            return idPedidoGenerado;  // Devuelve el ID del pedido creado
         }
+
 
         /// <summary>
         /// Función que desactiva un pedido en la base de datos usando el procedimiento almacenado 'DesactivarPedido'.
