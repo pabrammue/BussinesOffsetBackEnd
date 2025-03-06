@@ -47,10 +47,10 @@ namespace DAL
                             (
                             (int)miLector["id"],
                             miLector["nombre"].ToString(),
-                            (int)miLector["porcentajeIVA"],
+                            (byte)miLector["porcentajeIVA"],
                             (int)miLector["stock"],
                             (int)miLector["idCategoria"],
-                            (double)miLector["precioUnitario"]
+                            (decimal)miLector["precioUnidad"]
                             );
 
                         listaProductos.Add(producto);

@@ -15,7 +15,7 @@ namespace ENT
         private int porcentajeIVA;
         private int stock;
         private int idCategoria;
-        private double precioUnitario;
+        private decimal precioUnitario;
         #endregion
         #region Propiedades
         public int IdProducto
@@ -48,7 +48,7 @@ namespace ENT
             set { idCategoria = value; }
         }
 
-        public double PrecioUnitario
+        public decimal PrecioUnitario
         {
             get { return precioUnitario; }
             set { precioUnitario = value; }
@@ -57,7 +57,7 @@ namespace ENT
         #region Constructores
         public ProductosPorProveedorYCategorias() { }
 
-        public ProductosPorProveedorYCategorias(int idProducto, string nombre, int porcentajeIVA, int stock, int idCategoria, double precioUnitario)
+        public ProductosPorProveedorYCategorias(int idProducto, string nombre, int porcentajeIVA, int stock, int idCategoria, decimal precioUnitario)
         {
             this.idProducto = idProducto;
             this.nombre = nombre;
