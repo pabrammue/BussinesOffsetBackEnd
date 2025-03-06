@@ -12,11 +12,14 @@ namespace ENT
         private int idDetalles;
         private int idPedido;
         private int idProducto;
-        private decimal precioTotal;
-        private decimal cuotaIva;
-        private decimal precioBruto;
         private int cantidad;
+        private decimal precioBruto;
+        private decimal cuotaIva;
+        private decimal precioTotal;
+        private int idProveedor;
         private string nombreProducto;
+        private decimal precioUnidad;
+        private int porcentajeIVA;
         #endregion
 
         #region Propiedades
@@ -63,6 +66,16 @@ namespace ENT
             get { return nombreProducto; }
             set { nombreProducto = value; }
         }
+        public decimal PrecioUnidad
+        {
+            get { return precioUnidad; }
+            set { precioUnidad = value; }
+        }
+        public int PorcentajeIva
+        {
+            get { return porcentajeIVA; }
+            set { porcentajeIVA = value; }
+        }
         #endregion
 
         #region Constructores
@@ -87,17 +100,7 @@ namespace ENT
         /// <param name="precioBruto">Numero decimal decimal que indica el precio bruto</param>
         /// <param name="cantidad">Numero entero que indica la cantidad de productos</param>
         /// <param name="nombreProducto">Cadena que indica el nombre del producto</param>
-        public DetallesPedidosConNombreProducto(int idDetalles, int idPedido, int idProducto, decimal precioTotal, decimal cuotaIva, decimal precioBruto, int cantidad, string nombreProducto)
-        {
-            this.idDetalles = idDetalles;
-            this.idPedido = idPedido;
-            this.idProducto = idProducto;
-            this.precioTotal = precioTotal;
-            this.cuotaIva = cuotaIva;
-            this.precioBruto = precioBruto;
-            this.cantidad = cantidad;
-            this.nombreProducto = nombreProducto;
-        }
+        
 
         #endregion
     }
