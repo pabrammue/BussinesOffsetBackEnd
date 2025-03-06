@@ -37,7 +37,7 @@ namespace API.Controllers.API
         {
             PedidosConDetallesProductos pedidoFinal = new PedidosConDetallesProductos();
             PedidosConNombreProveedor pedido = new PedidosConNombreProveedor();
-            List<DetallesPedidos> detallesPedidos = new List<DetallesPedidos>();
+            List<DetallesPedidosConNombreProducto> detallesPedidos = new List<DetallesPedidosConNombreProducto>();
             List<PedidosConNombreProveedor> listaPedidos = new List<PedidosConNombreProveedor>();
             try
             {
