@@ -98,19 +98,22 @@ namespace DAL
                 {
                     while (miLector.Read())
                     {
-                        DetallesPedidos DetallesPedidosConNombreProducto = new DetallesPedidosConNombreProducto
+                        
+                        DetallesPedidosConNombreProducto detalles = new DetallesPedidosConNombreProducto
                         (
-                            idPedido,
+                            (int)miLector["idDetalles"],
+                            (int)miLector["idPedido"],
                             (int)miLector["idProducto"],
                             (decimal)miLector["precioTotal"],
-                            (decimal)miLector["cuotaDeIVA"],
+                            (decimal)miLector["cuotaIva"],
                             (decimal)miLector["precioBruto"],
-                            (int)miLector["cantidad"]
-                            
-
+                            (int)miLector["cantidad"],
+                            miLector["nombreProducto"].ToString(),
+                            (decimal)miLector["precioUnidad"],
+                            (int)miLector["porcentajeIva"]
                         );
 
-                        listaDetalles.Add(detalle);
+                        listaDetalles.Add(detalles);
                     }
                 }
                 miLector.Close();
