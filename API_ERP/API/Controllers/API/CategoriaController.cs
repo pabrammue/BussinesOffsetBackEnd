@@ -16,7 +16,7 @@ namespace API.Controllers.API
         {
             IActionResult respuesta = null;
 
-            List<Categorias> listadoCompleto = ManejadoraCategoriasDAL.ListadoCompletoCategoriasDAL();
+            List<Categorias> listadoCompleto = ManejadoraCategoriasDAL.ListadoCategoriasPorProveedorDAL();
 
             try
             {

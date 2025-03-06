@@ -14,11 +14,12 @@ namespace DAL
         #region Funciones
 
         /// <summary>
-        /// Función para devolver un listado de productos por proveedor.
+        /// Función para devolver un listado de productos por proveedor y categoría.
         /// </summary>
         /// <param name="idProveedor">ID del proveedor cuyos productos se desean obtener</param>
-        /// <returns>Lista de productos del proveedor especificado</returns>
-        public static List<ProductosPorProveedorYCategorias> ObtenerProductosPorProveedor(int idProveedor)
+        /// <param name="idCategoria">ID de la categoría cuyos productos se desean obtener</param>
+        /// <returns>Lista de productos del proveedor y categoría especificados</returns>
+        public static List<ProductosPorProveedorYCategorias> ObtenerProductosPorProveedorYCategoria(int idProveedor, int idCategoria)
         {
             List<ProductosPorProveedorYCategorias> listaProductos = new List<ProductosPorProveedorYCategorias>();
             SqlConnection miConexion = new SqlConnection();
@@ -31,7 +32,10 @@ namespace DAL
                 miComando.CommandText = "ObtenerProductosPorProveedorYCategoria"; // Nombre del procedimiento almacenado
                 miComando.CommandType = CommandType.StoredProcedure;
                 miComando.Connection = miConexion;
-                miComando.Parameters.AddWithValue("@idProveedor", idProveedor); // Se agrega el parámetro
+
+                // Se agregan los parámetros
+                miComando.Parameters.AddWithValue("@idProveedor", idProveedor);
+                miComando.Parameters.AddWithValue("@idCategoria", idCategoria);
 
                 miLector = miComando.ExecuteReader();
 
@@ -56,7 +60,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener los productos por proveedor: " + ex.Message);//System.Exception: 'Error al obtener los productos por proveedor: Could not find stored procedure 'ObtenerProductosPorProveedorYCategoria'.'
+                throw new Exception("Error al obtener los productos por proveedor y categoría: " + ex.Message);
             }
             finally
             {
@@ -65,6 +69,7 @@ namespace DAL
 
             return listaProductos;
         }
+
 
         #endregion
     }
