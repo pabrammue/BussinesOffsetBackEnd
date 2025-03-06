@@ -50,7 +50,7 @@ namespace DAL
                             (int)miLector["porcentajeIVA"],
                             (int)miLector["stock"],
                             (int)miLector["idCategoria"],
-                            (int)miLector["precioUnitario"]
+                            (double)miLector["precioUnitario"]
                             );
 
                         listaProductos.Add(producto);
