@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DAL;
+using ENT;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,9 +15,8 @@ namespace API.Controllers.API
         public IActionResult Get()
         {
             IActionResult respuesta = null;
-            List<String> listadoCompleto = new List<String>();
-            
-            //List<String> listadoCompleto = "ManejadoraCategoria.getListadoCategoriaDAL()"
+
+            List<Categorias> listadoCompleto = ManejadoraCategoriasDAL.ListadoCompletoCategoriasDAL();
 
             try
             {
