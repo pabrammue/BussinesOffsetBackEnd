@@ -12,7 +12,7 @@ namespace DAL
         /// </summary>
         /// <param name="idProveedor">ID del proveedor para filtrar las categorías</param>
         /// <returns>Devolverá una lista de Categorias asociadas al proveedor</returns>
-        public static List<Categorias> ListadoCompletoCategoriasDAL(int idProveedor)
+        public static List<Categorias> ListadoCategoriasPorProveedorDAL(int idProveedor)
         {
             SqlConnection miConexion = new SqlConnection();
             List<Categorias> listadoCategorias = new List<Categorias>();
