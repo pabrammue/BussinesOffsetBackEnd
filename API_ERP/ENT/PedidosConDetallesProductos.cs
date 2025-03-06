@@ -10,12 +10,12 @@ namespace ENT
     {
         #region Atributos
         private PedidosConNombreProveedor pedido;
-        private List<DetallesPedidos> listaProductos;
+        private List<DetallesPedidosConNombreProducto> listaProductos;
         #endregion
 
         #region Propiedades
         public PedidosConNombreProveedor Pedido { get {  return pedido; } set { pedido = value; } }
-        public List<DetallesPedidos> ListaProductos { get { return listaProductos; } set {  listaProductos = value; } }
+        public List<DetallesPedidosConNombreProducto> ListaProductos { get { return listaProductos; } set {  listaProductos = value; } }
         #endregion
 
         #region Constructores
@@ -28,7 +28,7 @@ namespace ENT
         
         }
 
-        public PedidosConDetallesProductos(PedidosConNombreProveedor pedido, List<DetallesPedidos> listaProductos)
+        public PedidosConDetallesProductos(PedidosConNombreProveedor pedido, List<DetallesPedidosConNombreProducto> listaProductos)
         {
             this.pedido = pedido;
             this.listaProductos = listaProductos;
