@@ -110,8 +110,11 @@ namespace API.Controllers.API
         {
             try
             {
-                bool seBorra = true;/*ClsManejadoraPersonaBL.BorraPersonaBL(id);*/
-                if (!seBorra)
+                int filasAfectadas = 0;
+
+                filasAfectadas = ManejadoraPedidosDAL.desactivarPedido(id);
+
+                if (filasAfectadas > 0)
                 {
                     return Accepted("Se ha borrado correctamente");
                 }

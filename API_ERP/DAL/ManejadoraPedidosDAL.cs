@@ -193,12 +193,13 @@ namespace DAL
             try
             {
                 conexion = clsConexion.getConexion();
-                miComando.Connection = conexion;
-                miComando.CommandType = System.Data.CommandType.StoredProcedure;
-                miComando.CommandText = "DesactivarPedido";
 
                 // Parámetro del procedimiento almacenado
-                miComando.Parameters.Add("@idPedido", System.Data.SqlDbType.Int).Value = idPedido;
+                miComando.Parameters.AddWithValue("@idPedido", idPedido);
+
+                miComando.Connection = conexion;
+
+                miComando.CommandText = "UPDATE Pedidos SET aceptado = 0 " + "WHERE id = @idPedido";
 
                 numeroFilasAfectadas = miComando.ExecuteNonQuery();
             }
@@ -213,11 +214,6 @@ namespace DAL
 
             return numeroFilasAfectadas;
         }
-
-
-
-
-
         #endregion
     }
 }
