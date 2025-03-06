@@ -100,7 +100,7 @@ namespace API.Controllers.API
                 {
                     nuevaLista.Add(new DetallesPedidos
                     {
-                        IdPedido = item.IdPedido,
+                        IdPedido = idPedido,
                         IdProducto = item.IdProducto,
                         PrecioTotal = item.PrecioTotal,
                         CuotaIva = item.CuotaIva,
@@ -109,6 +109,8 @@ namespace API.Controllers.API
                     });
                 }
 
+                guardadoCorrectamente = ManejadoraPedidosDAL.creaccionListaProductosDelPedidoDAL(nuevaLista, idPedido);
+                
 
 
                 if (guardadoCorrectamente)

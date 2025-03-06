@@ -173,6 +173,61 @@ namespace DAL
             return idPedidoGenerado;  
         }
 
+        /// <summary>
+        /// Función que inserta los productos de un pedido en la base de datos usando el procedimiento almacenado 'InsertarPedido'.
+        /// <br></br>
+        /// Pre: Lista de productos y el ID del pedido.
+        /// <br></br>
+        /// Post: Retorna true si todas las inserciones fueron exitosas, false en caso contrario.
+        /// </summary>
+        /// <param name="listaProductos">Lista de productos a insertar en la base de datos.</param>
+        /// <param name="idPedido">ID del pedido al que pertenecen los productos.</param>
+        /// <returns>True si las inserciones fueron exitosas, false en caso contrario.</returns>
+        public static bool creaccionListaProductosDelPedidoDAL(List<DetallesPedidos> listaProductos, int idPedido)
+        {
+            bool insercionExitosa = true;
+
+            using (SqlConnection conexion = clsConexion.getConexion())
+            {
+                
+
+                try
+                {
+                    foreach (var producto in listaProductos)
+                    {
+                        // Mover el using aquí para crear un nuevo comando en cada iteración
+                        using (SqlCommand miComando = new SqlCommand())
+                        {
+                            miComando.Connection = conexion;
+                            miComando.CommandType = CommandType.Text;
+                            miComando.CommandText = @"INSERT INTO Detalles_Pedido (idPedido, idProducto, cantidad) 
+                                              VALUES (@idPedido, @idProducto, @cantidad);";
+
+                            miComando.Parameters.Add("@idPedido", SqlDbType.Int).Value = idPedido;
+                            miComando.Parameters.Add("@idProducto", SqlDbType.Int).Value = producto.IdProducto;
+                            miComando.Parameters.Add("@cantidad", SqlDbType.Int).Value = producto.Cantidad;
+
+                            int filasAfectadas = miComando.ExecuteNonQuery();
+
+                            if (filasAfectadas <= 0)
+                            {
+                                insercionExitosa = false;
+                                break;  // Termina el proceso si alguna inserción falla
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al insertar productos del pedido: " + ex.Message);
+                }
+            }
+
+            return insercionExitosa;
+        }
+
+
+
 
         /// <summary>
         /// Función que desactiva un pedido en la base de datos usando el procedimiento almacenado 'DesactivarPedido'.
