@@ -100,7 +100,20 @@ namespace ENT
         /// <param name="precioBruto">Numero decimal decimal que indica el precio bruto</param>
         /// <param name="cantidad">Numero entero que indica la cantidad de productos</param>
         /// <param name="nombreProducto">Cadena que indica el nombre del producto</param>
-        
+        /// <param name="porcentajeIVA">Numero entero que indica el porcentaje de IVA</param>
+        public DetallesPedidosConNombreProducto(int idDetalles, int idPedido, int idProducto, decimal precioTotal, decimal cuotaIva, decimal precioBruto, int cantidad, string nombreProducto, decimal precioUnidad, int porcentajeIVA)
+        {
+            this.idDetalles = idDetalles;
+            this.idPedido = idPedido;
+            this.idProducto = idProducto;
+            this.precioTotal = precioTotal;
+            this.cuotaIva = cuotaIva;
+            this.precioBruto = precioBruto;
+            this.cantidad = cantidad;
+            this.nombreProducto = nombreProducto;
+            this.precioUnidad = precioUnidad;
+            this.porcentajeIVA = porcentajeIVA;
+        }
 
         #endregion
     }
