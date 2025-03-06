@@ -104,12 +104,12 @@ namespace DAL
                             (int)miLector["idPedido"],
                             (int)miLector["idProducto"],
                             (decimal)miLector["precioTotal"],
-                            (decimal)miLector["cuotaDelIVA"],
+                            (decimal)miLector["cuotaDeIVA"],
                             (decimal)miLector["precioBruto"],
                             (int)miLector["cantidad"],
                             miLector["nombreProducto"].ToString(),
                             (decimal)miLector["precioUnidad"],
-                            (int)miLector["porcentajeIVA"]
+                            (byte)miLector["porcentajeIVA"]
                         );
 
                         listaDetalles.Add(detalles);
