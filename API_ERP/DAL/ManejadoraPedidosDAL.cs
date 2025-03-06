@@ -183,9 +183,9 @@ namespace DAL
         /// </summary>
         /// <param name="idPedido">Int para obtener el id del pedido</param>
         /// <returns>Número de filas afectadas tras la procedure</returns>
-        public static int desactivarPedido(int idPedido)
+        public static bool desactivarPedido(int idPedido)
         {
-            int numeroFilasAfectadas = 0;
+            bool borradoCorrectamente = true;
 
             SqlConnection conexion = new SqlConnection();
             SqlCommand miComando = new SqlCommand();
@@ -201,18 +201,18 @@ namespace DAL
 
                 miComando.CommandText = "UPDATE Pedidos SET aceptado = 0 " + "WHERE id = @idPedido";
 
-                numeroFilasAfectadas = miComando.ExecuteNonQuery();
+                miComando.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-                throw;
+                borradoCorrectamente = false;
             }
             finally
             {
                 conexion.Close();
             }
 
-            return numeroFilasAfectadas;
+            return borradoCorrectamente;
         }
         #endregion
     }

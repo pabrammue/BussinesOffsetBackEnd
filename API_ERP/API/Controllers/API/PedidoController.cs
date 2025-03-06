@@ -56,10 +56,32 @@ namespace API.Controllers.API
         }
 
         // POST api/pedido
+        /* [HttpPost]
+         public IActionResult Post([FromBody] Pedidos pedido,List<DetallesPedidos> listaProductos)
+         {
+             if (pedido == null || listaProductos==null)
+             {
+                 return BadRequest("Datos de pedido no válidos.");
+             }
+             try
+             {
+                 bool guardadoCorrectamente = true;//ClsManejadoraPersonaBL.CreaPersonaBL(persona);
+                 if (guardadoCorrectamente)
+                 {
+                     return Created("Pedido creado correctamente", pedido);
+                 }
+                 return BadRequest("No se pudo crear el pedido.");
+             }
+             catch
+             {
+                 return StatusCode(500, "Error interno del servidor.");
+             }
+         }*/
+
         [HttpPost]
-        public IActionResult Post([FromBody] Pedidos pedido,List<DetallesPedidos> listaProductos)
+        public IActionResult Post([FromBody] PedidosConDetallesProductos pedido)
         {
-            if (pedido == null || listaProductos==null)
+            if (pedido.Pedido == null || pedido.ListaProductos == null)
             {
                 return BadRequest("Datos de pedido no válidos.");
             }
@@ -110,22 +132,22 @@ namespace API.Controllers.API
         {
             try
             {
-                int filasAfectadas = 0;
+                bool borradoCorrectamente;
 
-                filasAfectadas = ManejadoraPedidosDAL.desactivarPedido(id);
+                borradoCorrectamente = ManejadoraPedidosDAL.desactivarPedido(id);
 
-                if (filasAfectadas > 0)
+                if (borradoCorrectamente)
                 {
-                    return Accepted("Se ha borrado correctamente");
+                    return Ok(borradoCorrectamente);
                 }
                 else
                 {
-                    return NotFound($"No se encontró el pedido con ID {id} para eliminar.");
+                    return NotFound(borradoCorrectamente);
                 }
             }
             catch
             {
-                return StatusCode(500, "Error interno del servidor.");
+                return StatusCode(500);
             }
         }
     }
