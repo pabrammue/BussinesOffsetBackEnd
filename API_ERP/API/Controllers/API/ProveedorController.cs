@@ -51,7 +51,7 @@ namespace API.Controllers.API
         }
 
         // GET api/proovedor/5/categorias/2
-        [HttpGet("{idProveedor}/categorias({idCategoria}")]
+        [HttpGet("{idProveedor}/categorias/{idCategoria}")]
         public IActionResult Get(int idProveedor,int idCategoria)
         {
             List<ProductosPorProveedorYCategorias> listadoCategorias =

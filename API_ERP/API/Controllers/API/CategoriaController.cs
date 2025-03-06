@@ -10,7 +10,7 @@ namespace API.Controllers.API
     [ApiController]
     public class CategoriaController : ControllerBase
     {
-        // GET: api/<CategoriaController>
+       /* // GET: api/<CategoriaController>
         [HttpGet]
         public IActionResult Get()
         {
@@ -30,7 +30,7 @@ namespace API.Controllers.API
             {
                 return StatusCode(500, "Error interno del servidor.");
             }
-
-        }
+       
+        }*/
     }
 }
