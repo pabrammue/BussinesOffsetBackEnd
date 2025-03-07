@@ -30,9 +30,30 @@ namespace API.Controllers.API
             }
         }
 
+        // GET api/proovedor/5/productos
+        [HttpGet("{idProveedor}/productos")]
+        public IActionResult GetProductos(int idProveedor)
+        {
+            List<ProductosPorProveedorYCategorias> listadoProductos = ManejadoraProductosDAL.ObtenerProductosPorProveedor(idProveedor);
+            try
+            {
+                
+                if (listadoProductos.Count == 0)
+                {
+                    return NotFound($"No se ha asociado productos al proveedor: {idProveedor}.");
+                }
+                return Ok(listadoProductos);
+            }
+            catch
+            {
+                return StatusCode(500, "Error interno del servidor.");
+            }
+        }
+
+
         // GET api/proovedor/5/categorias
         [HttpGet("{id}/categorias")]
-        public IActionResult Get(int id)
+        public IActionResult GetCategorias(int id)
         {
             List<Categorias> listadoCategorias = ManejadoraCategoriasDAL.ListadoCategoriasPorProveedorDAL(id);
             try
