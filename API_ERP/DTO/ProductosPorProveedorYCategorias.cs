@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace ENT
+namespace DTO
 {
     public class ProductosPorProveedorYCategorias
     {
