@@ -55,8 +55,22 @@ namespace ENT
         }
         #endregion
         #region Constructores
+        /// <summary>
+        /// Constructor sin parametros
+        /// Pre: Nada
+        /// Post: Objeto ProductosPorProveedorYCategorias con atributos
+        /// </summary>
         public ProductosPorProveedorYCategorias() { }
 
+        /// <summary>
+        /// Constructor con parametros
+        /// </summary>
+        /// <param name="idProducto">Numero entero que indica el id del producto</param>
+        /// <param name="nombre">Cadena que contiene el nombre del producto</param>
+        /// <param name="porcentajeIVA">Numero entero que indica el porcentaje de IVA</param>
+        /// <param name="stock">Numero entero que indica el stock</param>
+        /// <param name="idCategoria">Numero entero que indica el id de la categoria</param>
+        /// <param name="precioUnitario">Numero decimal que indica el precioUnitario</param>
         public ProductosPorProveedorYCategorias(int idProducto, string nombre, int porcentajeIVA, int stock, int idCategoria, decimal precioUnitario)
         {
             this.idProducto = idProducto;
