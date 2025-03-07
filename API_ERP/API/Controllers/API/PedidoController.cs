@@ -1,37 +1,43 @@
-﻿using DAL;
-using ENT;
-using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿using DAL;  
+using ENT;  
+using Microsoft.AspNetCore.Mvc;  
 
 namespace API.Controllers.API
 {
+    
     [Route("api/pedido")]
     [ApiController]
     public class PedidoController : ControllerBase
     {
         // GET: api/pedido
+        // Obtiene todos los pedidos con el nombre del proveedor asociado.
         [HttpGet]
         public IActionResult Get()
         {
             List<PedidosConNombreProveedor> listadoCompleto = new List<PedidosConNombreProveedor>();
             try
             {
-                
+                // Obtiene la lista de pedidos desde la capa DAL.
                 listadoCompleto = ManejadoraPedidosDAL.ObtenerPedidosConNombreProveedor();
+
+                // Si la lista está vacía, retorna un 404 Not Found.
                 if (listadoCompleto.Count == 0)
                 {
                     return NotFound("No se encontraron pedidos.");
                 }
+
+                // Retorna un 200 OK con la lista de pedidos.
                 return Ok(listadoCompleto);
             }
             catch
             {
+                // Manejo de errores inesperados.
                 return StatusCode(500, "Error interno del servidor.");
             }
         }
 
         // GET api/pedido/5
+        // Obtiene un pedido específico junto con sus detalles de productos.
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -41,12 +47,17 @@ namespace API.Controllers.API
             List<PedidosConNombreProveedor> listaPedidos = new List<PedidosConNombreProveedor>();
             try
             {
+                // Obtiene la lista de pedidos y busca el pedido con el ID solicitado.
                 listaPedidos = ManejadoraPedidosDAL.ObtenerPedidosConNombreProveedor();
-
                 pedido = listaPedidos.Find(x => x.Id == id);
 
+                // Obtiene los detalles de productos asociados al pedido.
                 detallesPedidos = ManejadoraPedidosDAL.ObtenerDetallesPedidoPorPedido(id);
+
+                // Crea un objeto que combina el pedido y sus detalles.
                 pedidoFinal = new PedidosConDetallesProductos(pedido, detallesPedidos);
+
+                // Retorna el pedido con detalles.
                 return Ok(pedidoFinal);
             }
             catch
@@ -56,46 +67,29 @@ namespace API.Controllers.API
         }
 
         // POST api/pedido
-        /* [HttpPost]
-         public IActionResult Post([FromBody] Pedidos pedido,List<DetallesPedidos> listaProductos)
-         {
-             if (pedido == null || listaProductos==null)
-             {
-                 return BadRequest("Datos de pedido no válidos.");
-             }
-             try
-             {
-                 bool guardadoCorrectamente = true;//ClsManejadoraPersonaBL.CreaPersonaBL(persona);
-                 if (guardadoCorrectamente)
-                 {
-                     return Created("Pedido creado correctamente", pedido);
-                 }
-                 return BadRequest("No se pudo crear el pedido.");
-             }
-             catch
-             {
-                 return StatusCode(500, "Error interno del servidor.");
-             }
-         }*/
-
+        // Crea un nuevo pedido con sus detalles de productos.
         [HttpPost]
         public IActionResult Post([FromBody] PedidosConDetallesProductos pedido)
         {
+            // Valida si el pedido o la lista de productos son nulos.
             if (pedido.Pedido == null || pedido.ListaProductos == null)
             {
                 return BadRequest("Datos de pedido no válidos.");
             }
             try
             {
-                bool guardadoCorrectamente = true;
+                bool guardadoCorrectamente = true;  // Variable para verificar si se guarda correctamente.
 
+                // Obtiene el pedido y la lista de productos desde el objeto recibido.
                 PedidosConNombreProveedor ped = pedido.Pedido;
                 List<DetallesPedidosConNombreProducto> listaP = pedido.ListaProductos;
+
+                // Crea el pedido en la base de datos y obtiene su ID.
                 int idPedido = ManejadoraPedidosDAL.creaccionPedidoDAL(ped);
 
                 List<DetallesPedidos> nuevaLista = new List<DetallesPedidos>();
 
-                
+                // Mapea los productos recibidos a la estructura necesaria para guardarlos en la base de datos.
                 foreach (var item in listaP)
                 {
                     nuevaLista.Add(new DetallesPedidos
@@ -109,12 +103,12 @@ namespace API.Controllers.API
                     });
                 }
 
+                // Guarda la lista de productos asociados al pedido.
                 guardadoCorrectamente = ManejadoraPedidosDAL.creaccionListaProductosDelPedidoDAL(nuevaLista, idPedido);
-                
-
 
                 if (guardadoCorrectamente)
                 {
+                    // Retorna un 201 Created si se guardó correctamente.
                     return Created("Pedido creado correctamente", pedido);
                 }
                 return BadRequest("No se pudo crear el pedido.");
@@ -126,18 +120,22 @@ namespace API.Controllers.API
         }
 
         // PUT api/pedido/5
+        // Actualiza un pedido existente.
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Pedidos pedido)
         {
+            // Valida si el cuerpo de la solicitud es nulo.
             if (pedido == null)
             {
                 return BadRequest("Datos de pedido no válidos.");
             }
             try
             {
-                bool actualizado = true;//ClsManejadoraPersonaBL.EditaPersonaBL(persona);
+                bool actualizado = true;  // Simula la actualización.
+
                 if (actualizado)
                 {
+                    // Retorna un 202 Accepted si se actualizó correctamente.
                     return Accepted("Se ha modificado correctamente", pedido);
                 }
                 else
@@ -152,26 +150,29 @@ namespace API.Controllers.API
         }
 
         // DELETE api/pedido/5
+        // Elimina o desactiva un pedido por ID.
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             try
             {
-                bool borradoCorrectamente;
-
-                borradoCorrectamente = ManejadoraPedidosDAL.desactivarPedido(id);
+                // Intenta desactivar el pedido en la base de datos.
+                bool borradoCorrectamente = ManejadoraPedidosDAL.desactivarPedido(id);
 
                 if (borradoCorrectamente)
                 {
+                    // Retorna un 200 OK si se desactivó correctamente.
                     return Ok(borradoCorrectamente);
                 }
                 else
                 {
+                    // Retorna un 404 Not Found si el pedido no existe.
                     return NotFound(borradoCorrectamente);
                 }
             }
             catch
             {
+                // Retorna un 500 Internal Server Error si ocurre un error inesperado.
                 return StatusCode(500);
             }
         }

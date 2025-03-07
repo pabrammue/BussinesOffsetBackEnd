@@ -70,11 +70,11 @@ namespace DAL
 
 
         /// <summary>
-        /// Esta Funcion devuelve una lista
+        /// Esta Funcion devuelve una lista lista de productos de un pedido
         /// </summary>
-        /// <param name="idPedido"></param>
+        /// <param name="idPedido">Id de un Pedido para sacar la lista de los productos</param>
         /// <returns></returns>
-        /// <exception cref="Exception"></exception>
+        /// <exception cref="Exception">Devolverá una lista completa de todos los productos de un pedido</exception>
         public static List<DetallesPedidosConNombreProducto> ObtenerDetallesPedidoPorPedido(int idPedido)
         {
             List<DetallesPedidosConNombreProducto> listaDetalles = new List<DetallesPedidosConNombreProducto>();
