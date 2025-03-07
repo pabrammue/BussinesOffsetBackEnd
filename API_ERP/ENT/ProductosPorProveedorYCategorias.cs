@@ -64,6 +64,8 @@ namespace ENT
 
         /// <summary>
         /// Constructor con parametros
+        /// Pre: El usuario inserta los atributos
+        /// Post: Objeto ProductosPorProveedorYCategorias con todos los atributos
         /// </summary>
         /// <param name="idProducto">Numero entero que indica el id del producto</param>
         /// <param name="nombre">Cadena que contiene el nombre del producto</param>
