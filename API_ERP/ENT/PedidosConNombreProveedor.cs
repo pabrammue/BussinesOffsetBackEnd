@@ -61,11 +61,34 @@ namespace ENT
 
         #region Constructores
 
+        /// <summary>
+        /// Constructor sin parametros
+        /// Pre: Nada
+        /// Post: Objeto PedidosConNombreProveedor sin atributos
+        /// </summary>
         public PedidosConNombreProveedor() { }
 
+        /// <summary>
+        /// Constructor con el id del proveedor
+        /// Pre: El usuario pasa el id del proveedor
+        /// Post: Objeto PedidosConNombreProveedor con id de proveedor
+        /// </summary>
+        /// <param name="idProveedor">Numero entero que indica el idProveedor</param>
         public PedidosConNombreProveedor(int idProveedor) {
             this.idProveedor=idProveedor;
         }
+        /// <summary>
+        /// Constructor con parametros
+        /// Pre: El usuario envia los atributos para la creacion del objeto
+        /// Post: Objeto PedidosConNombreProveedor con todos los atributos
+        /// </summary>
+        /// <param name="id">Numero entero que indica el id del pedido</param>
+        /// <param name="fecha">fecha del pedido</param>
+        /// <param name="precioTotal">precio total del pedido</param>
+        /// <param name="precioBruto">precio bruto del pedido</param>
+        /// <param name="idProveedor">Numero entero que indica el id del proveedor del pedido</param>
+        /// <param name="aceptado"></param>
+        /// <param name="nombreProveedor">Cadena que indica el nombre del proveedor</param>
         public PedidosConNombreProveedor(int id, DateTime fecha, decimal precioTotal, decimal precioBruto, int idProveedor, bool aceptado, string nombreProveedor)
         {
             this.id = id;
