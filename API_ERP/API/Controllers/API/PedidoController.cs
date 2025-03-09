@@ -151,24 +151,24 @@ namespace API.Controllers.API
         }
 
         // DELETE api/pedido/5
-        // Elimina o desactiva un pedido por ID.
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        // Elimina o desactiva un pedido por ID.    
+        [HttpPatch("{id}")]
+        public IActionResult Patch(int id)
         {
             try
             {
                 // Intenta desactivar el pedido en la base de datos.
-                bool borradoCorrectamente = ManejadoraPedidosDAL.desactivarPedido(id);
+                bool canceladoCorrectamente = ManejadoraPedidosDAL.desactivarPedido(id);
 
-                if (borradoCorrectamente)
+                if (canceladoCorrectamente)
                 {
                     // Retorna un 200 OK si se desactivó correctamente.
-                    return Ok(borradoCorrectamente);
+                    return Ok(canceladoCorrectamente);
                 }
                 else
                 {
                     // Retorna un 404 Not Found si el pedido no existe.
-                    return NotFound(borradoCorrectamente);
+                    return NotFound(canceladoCorrectamente);
                 }
             }
             catch
