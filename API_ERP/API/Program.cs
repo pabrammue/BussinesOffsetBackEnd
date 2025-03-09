@@ -11,6 +11,10 @@ builder.Services.AddCors(options =>
             policy.WithOrigins("http://localhost:4200") // Permitir Angular
                   .AllowAnyMethod()
                   .AllowAnyHeader();
+
+            policy.WithOrigins("https://kind-wave-047b9021e.6.azurestaticapps.net/")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
         });
 });
 
